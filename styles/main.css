@@ -1,0 +1,105 @@
+html, body {
+    height: 100%;
+    background-color: #223344;
+}
+
+#container{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 336px 1fr;
+    grid-template-rows: 1fr 424px 1fr;
+    grid-template-areas: 
+        'header header header'
+        'left-sidebar calculator right-sidebar'
+        'footer footer footer';
+}
+
+#display {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 75px;
+    color: rgba(221, 194, 54, 1);
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 24px;
+}
+
+button {
+    background: linear-gradient(135deg, rgba(58, 92, 125, 0.75) 0%, rgba(50, 77, 103, 0.5) 53.65%, rgba(31, 58, 85, 0.75) 100%);
+    border: 0.25px solid rgba(229, 229, 229, 0.15);
+    box-sizing: border-box;  
+    border-radius: 1px;
+    color: rgba(221, 194, 54, 1);
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    border: 2px solid #7A61FF;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active {
+    color: #7A61FF;
+    transition-duration: 0ms;
+}
+
+.number {
+    font-family: 'Monoton', cursive;
+    font-size: 32px;
+    line-height: 50px;
+    align-items: center;
+}
+
+.text-button {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.operator, .decimal {
+    font-family: 'Roboto', sans-serif;    
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+#multiply {
+    padding-top: 10px;
+}
+
+#decimal {
+    padding-bottom: 12px;
+}
+
+#calculator {
+    grid-area: calculator;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 16px;
+}
+
+#add {
+    grid-row: 2 / span 2;
+    grid-column: 4 / span 1;
+}
+
+#enter {
+    grid-row: 4 / span 2;
+    grid-column: 4 / span 1;
+}
+
+#zero {
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 2;
+}
