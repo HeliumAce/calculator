@@ -14,18 +14,32 @@ html, body {
         'footer footer footer';
 }
 
+#displayBox {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    display: grid;
+    grid-template-rows: 1fr 80px;
+    color: rgba(221, 194, 54, 1);
+}
+
 #display {
     font-family: 'Roboto Mono', monospace;
     font-weight: 300;
-    font-size: 64px;
+    font-size: 3em;
     line-height: 75px;
     word-break: break-word;
-    color: rgba(221, 194, 54, 1);
-    grid-row: 1 / span 1;
-    grid-column: 2 / span 1;
     display: flex;
     align-items: flex-end;
-    margin-bottom: 24px;
+    justify-content: flex-end;
+    margin-bottom: 18px;
+}
+
+#latestCalc {
+    font-size: 1em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 18px;
 }
 
 button {

@@ -1,25 +1,41 @@
-const displayValue = document.getElementById('display');
 let currentNum = '';
 let value1 = '';
 let value2 = '';
 let value3 = '';
 let operator1 = '';
 let operator2 = '';
+let results = false;
 
+const displayValue = document.getElementById('display');
+const latestCalc = document.getElementById('latestCalc');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equals = document.getElementById('enter');
 const clear = document.getElementById('clear');
 
+latestCalc.innerHTML = 'I am a calculation';
+
 numbers.forEach(item => {
     item.addEventListener('click', event => {
-        currentNum += item.innerHTML;
-        displayValue.innerHTML += item.innerHTML;
+        if (results == true) {
+            value1 = '';
+            displayValue.innerHTML =  '';
+            currentNum += item.innerHTML;
+            displayValue.innerHTML += item.innerHTML;
+            results = false;
+        } else if (results == false) {
+            currentNum += item.innerHTML;
+            displayValue.innerHTML += item.innerHTML;
+        }
+        
     })
 });
 
 operators.forEach(item => {
     item.addEventListener('click', event => {
+        if (results == true) {
+            results = false;
+        };
         setValues();
         updateOperation();
         if (operator1 != '') {
@@ -99,6 +115,10 @@ clear.addEventListener('click', event => {
 });
 
 equals.addEventListener('click', event => {
+    /* if (currentNum == '') {
+        displayValue.innerHTML =  value1;
+        return;
+    } */
     setValues();
     pressEnter();
     displayValue.innerHTML =  operate(operator1, value1, value2);
@@ -108,28 +128,26 @@ equals.addEventListener('click', event => {
     value2 = '';
     operator1 = '';
     operator2 = '';
+    results = true;
 });
 
 function operate (opp, a, b) {
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
+    let round = 10e4;
     
     switch (opp) {
         case '+':
-            console.log(a + b);
-            return(a + b);
+            return(Math.round((a + b) * round) / round);
             break;
         case '-':
-            console.log(a - b);
-            return(a - b);
+            return(Math.round((a - b) * round) / round);
             break;
         case '*':
-            console.log(a * b);
-            return(a * b);
+            return(Math.round((a * b) * round) / round);
             break;
         case '/':
-            console.log(a / b);
-            return(a / b);
+            return(Math.round((a / b) * round) / round);
             break;
         default:
             console.log('Something went wrong...');
