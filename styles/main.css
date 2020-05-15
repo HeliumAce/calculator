@@ -19,6 +19,7 @@ html, body {
     font-weight: 300;
     font-size: 64px;
     line-height: 75px;
+    word-break: break-word;
     color: rgba(221, 194, 54, 1);
     grid-row: 1 / span 1;
     grid-column: 2 / span 1;
