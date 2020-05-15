@@ -3,7 +3,8 @@ let currentNum = '';
 let value1 = '';
 let value2 = '';
 let value3 = '';
-let currentOpp = '';
+let operator1 = '';
+let operator2 = '';
 
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
@@ -12,7 +13,6 @@ const clear = document.getElementById('clear');
 
 numbers.forEach(item => {
     item.addEventListener('click', event => {
-        console.log(item.innerHTML);
         currentNum += item.innerHTML;
         displayValue.innerHTML += item.innerHTML;
     })
@@ -21,15 +21,11 @@ numbers.forEach(item => {
 operators.forEach(item => {
     item.addEventListener('click', event => {
         setValues();
-        // checkValues();
-        if (currentOpp === '*' || currentOpp === '/') {
-            currentOpp = item.innerHTML;
-            console.log('currentOpp is ' + currentOpp);
-        } else if (currentOpp === '+' || currentOpp === '-') {
-            console.log('currentOpp is ' + currentOpp)
+        checkValues();
+        if (operator1 != '') {
+            operator2 = item.innerHTML;
         } else {
-            currentOpp = item.innerHTML;
-            console.log('currentOpp has been set to ' + currentOpp);
+            operator1 = item.innerHTML;
         }
         currentNum = ''; 
         displayValue.innerHTML += item.innerHTML;
@@ -38,7 +34,7 @@ operators.forEach(item => {
 
 function setValues() {
     if (value1 != '' && value2 != '') {
-        value1 = operate(currentOpp, value1, value2);
+        value3 = currentNum;
     } else if (value1 != '') {
         value2 = currentNum;
     } else {
@@ -46,11 +42,21 @@ function setValues() {
     }
 }
 
-/* function checkValues () {
-    if (currentOpp === '*' || currentOpp === '/') {
-        value1 = operate(currentOpp, value1, value2);
+function checkValues () {
+    if (operator1 === '*' || operator1 === '/') {
+        value1 = operate(operator1, value1, value2);
+        value2 = '';
+        operator1 = '';
+    } else if (operator2 === '*' || operator2 === '/') {
+        value2 = operate(operator2, value2, value3);
+        value3 = '';
+        operator2 = '';
+    } else if (operator2 === '+' || operator2 === '-') {
+        value1 = operate(operator1, value1, value2);
+        value2 = value3;
+        value3 = '';
     }
-} */
+}
 
 
 
@@ -59,13 +65,14 @@ clear.addEventListener('click', event => {
     currentNum = '';
     value1 = '';
     value2 = '';
-    value3 = '';
-    currentOpp = '';
+    operator1 = '';
+    operator2 = '';
 });
 
 equals.addEventListener('click', event => {
     setValues();
-    displayValue.innerHTML =  operate(currentOpp, value1, value2);
+    checkValues();
+    displayValue.innerHTML =  operate(operator1, value1, value2);
     currentNum = displayValue.innerHTML;
 });
 
