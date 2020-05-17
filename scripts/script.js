@@ -100,7 +100,10 @@ function pressEnter () {
         operator1 = operator2;
     }
     currentCalc = [displayValue.innerHTML];
-    //currentCalc = currentCalc.toString().split('').join(' ');
+    currentCalc = currentCalc.toString().split('*').join(' * ');
+    currentCalc = currentCalc.toString().split('/').join(' / ');
+    currentCalc = currentCalc.toString().split('+').join(' + ');
+    currentCalc = currentCalc.toString().split('-').join(' - ');
 }
 
 clear.addEventListener('click', event => {
