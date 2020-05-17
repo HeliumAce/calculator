@@ -13,6 +13,7 @@ const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equals = document.getElementById('enter');
 const clear = document.getElementById('clear');
+const decimal = document.getElementById('decimal');
 
 numbers.forEach(item => {
     item.addEventListener('click', event => {
@@ -48,6 +49,14 @@ operators.forEach(item => {
         displayValue.innerHTML += item.innerHTML;
     })
 });
+
+decimal.addEventListener('click', event => {
+    if (!currentNum.split('').includes('.')) {
+        currentNum += decimal.innerHTML;
+        displayValue.innerHTML += decimal.innerHTML;
+    }
+});
+
 
 //assigns the current number to a number variable
 function setValues() {
@@ -92,7 +101,6 @@ function pressEnter () {
     }
     currentCalc = [displayValue.innerHTML];
     //currentCalc = currentCalc.toString().split('').join(' ');
-    //checkErrors();
 }
 
 clear.addEventListener('click', event => {
@@ -126,26 +134,6 @@ equals.addEventListener('click', event => {
     operator2 = '';
     results = true;
 });
-
-/* function checkErrors() {
-    if (!value1) {
-        results = true;
-        currentNum = '';
-        value1 = '';
-        value2 = '';
-        operator1 = '';
-        operator2 = '';
-        return displayValue.innerHTML = 'Calculation not supported';
-    } else if (!value2 && operator2) {
-        results = true;
-        currentNum = '';
-        value1 = '';
-        value2 = '';
-        operator1 = '';
-        operator2 = '';
-        return displayValue.innerHTML = 'Calculation not supported';
-    }
-}; */
 
 function operate (opp, a, b) {
     a = parseFloat(a);
